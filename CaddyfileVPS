@@ -1,0 +1,9 @@
+{$MAIN_DOMAIN} {
+        reverse_proxy {$SERVER_NAME}:{$SERVER_PORT} {
+                transport http {
+                        tls_server_name {$MAIN_DOMAIN}
+                        tls_insecure_skip_verify
+                }
+                header_up Cf-Connecting-IP {remote_host}
+        }       
+}
